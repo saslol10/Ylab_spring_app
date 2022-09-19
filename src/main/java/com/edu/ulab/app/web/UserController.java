@@ -3,6 +3,7 @@ package com.edu.ulab.app.web;
 import com.edu.ulab.app.facade.UserDataFacade;
 import com.edu.ulab.app.web.constant.WebConstant;
 import com.edu.ulab.app.web.request.UserBookRequest;
+import com.edu.ulab.app.web.request.UserRequest;
 import com.edu.ulab.app.web.response.UserBookResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -41,15 +42,15 @@ public class UserController {
         return response;
     }
 
-    @PutMapping(value = "/update")
-    public UserBookResponse updateUserWithBooks(@RequestBody UserBookRequest request) {
-        UserBookResponse response = userDataFacade.updateUserWithBooks(request);
+    @PutMapping(value = "/update/{userId}")
+    public UserBookResponse updateUserWithBooks(@RequestBody UserBookRequest request, @PathVariable Long userId) {
+        UserBookResponse response = userDataFacade.updateUserWithBooks(request, userId);
         log.info("Response with updated user and his books: {}", response);
         return response;
     }
 
     @GetMapping(value = "/get/{userId}")
-    public UserBookResponse updateUserWithBooks(@PathVariable Long userId) {
+    public UserBookResponse getUserWithBooks(@PathVariable Long userId) {
         UserBookResponse response = userDataFacade.getUserWithBooks(userId);
         log.info("Response with user and his books: {}", response);
         return response;
