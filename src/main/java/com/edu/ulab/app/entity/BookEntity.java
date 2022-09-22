@@ -1,12 +1,19 @@
 package com.edu.ulab.app.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
+/**
+ * Сущность Книга
+ * Getter
+ * Setter
+ * + Добавлены аннотации для конструкторов
+ */
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class BookEntity implements Serializable {
 
     private Long id;
@@ -18,14 +25,4 @@ public class BookEntity implements Serializable {
     private String author;
 
     private long pageCount;
-
-    public BookEntity() {}
-
-    public BookEntity(Long id, Long userId, String title, String author, long pageCount) {
-        this.id = id;
-        this.userId = userId;
-        this.title = title;
-        this.author = author;
-        this.pageCount = pageCount;
-    }
 }

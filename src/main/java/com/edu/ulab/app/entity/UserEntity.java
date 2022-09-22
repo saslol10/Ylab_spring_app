@@ -1,12 +1,19 @@
 package com.edu.ulab.app.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
+/**
+ * Сущность Пользователь
+ * Getter
+ * Setter
+ * + Добавлены аннотации для конструкторов
+ */
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserEntity implements Serializable {
 
     private Long id;
@@ -16,14 +23,4 @@ public class UserEntity implements Serializable {
     private String title;
 
     private int age;
-
-    public UserEntity() {
-    }
-
-    public UserEntity(Long id, String fullName, String title, int age) {
-        this.id = id;
-        this.fullName = fullName;
-        this.title = title;
-        this.age = age;
-    }
 }

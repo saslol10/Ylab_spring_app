@@ -14,6 +14,10 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * javadoc
+ * @author saslol
+ */
 @Slf4j
 @Component
 public class UserDataFacade {
@@ -35,9 +39,6 @@ public class UserDataFacade {
     public UserBookResponse createUserWithBooks(UserBookRequest userBookRequest) {
         log.info("Got user book create request: {}", userBookRequest);
         UserDto userDto = userMapper.userRequestToUserDto(userBookRequest.getUserRequest());
-        //что значит обращение к реальному юзеру в реальном хранилище?
-        //зачем мне обращаться к тому кто еще не создан? -> я не поняла этого
-        //если суть в том, чтобы избежать дубликатов, то тогда надо получать userId в request -> Но по заданию id генерируется в createUser
         log.info("Mapped user request: {}", userDto);
 
         UserDto createdUser = userService.createUser(userDto);
@@ -103,6 +104,7 @@ public class UserDataFacade {
     public void deleteUserWithBooks(Long userId) {
         UserDto userDto = userService.getUserById(userId);
         userService.deleteUserById(userId);
+        bookService.deleteBookByUserId(userId);
         log.info("Delete user: {}", userDto);
     }
 }

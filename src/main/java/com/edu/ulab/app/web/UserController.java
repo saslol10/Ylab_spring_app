@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,12 @@ import javax.validation.constraints.Pattern;
 
 import static com.edu.ulab.app.web.constant.WebConstant.REQUEST_ID_PATTERN;
 import static com.edu.ulab.app.web.constant.WebConstant.RQID;
+
+/**
+ * javadoc
+ * @author saslol
+ */
+
 
 @Slf4j
 @RestController
@@ -42,6 +49,7 @@ public class UserController {
         return response;
     }
 
+    @ApiResponse(description = "Update user and user's books")
     @PutMapping(value = "/update/{userId}")
     public UserBookResponse updateUserWithBooks(@RequestBody UserBookRequest request, @PathVariable Long userId) {
         UserBookResponse response = userDataFacade.updateUserWithBooks(request, userId);
@@ -49,6 +57,7 @@ public class UserController {
         return response;
     }
 
+    @ApiResponse(description = "Get user and user's books")
     @GetMapping(value = "/get/{userId}")
     public UserBookResponse getUserWithBooks(@PathVariable Long userId) {
         UserBookResponse response = userDataFacade.getUserWithBooks(userId);
@@ -56,6 +65,7 @@ public class UserController {
         return response;
     }
 
+    @ApiResponse(description = "Delete user and user's books")
     @DeleteMapping(value = "/delete/{userId}")
     public void deleteUserWithBooks(@PathVariable Long userId) {
         log.info("Delete user and his books:  userId {}", userId);
